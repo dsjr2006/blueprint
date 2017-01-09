@@ -10,7 +10,7 @@ import (
 	"github.com/blue-jay/blueprint/model/user"
 
 	"github.com/blue-jay/core/form"
-	"github.com/blue-jay/core/passhash"
+	"github.com/dsjr2006/dropbox-password"
 	"github.com/blue-jay/core/router"
 )
 
@@ -52,7 +52,7 @@ func Store(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// Hash password
-	password, errp := passhash.HashString(r.FormValue("password"))
+	password, errp := password.Hash(r.FormValue("password"), flight.MasterKey)
 
 	// If password hashing failed
 	if errp != nil {

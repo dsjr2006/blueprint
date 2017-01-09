@@ -11,7 +11,7 @@ import (
 
 	"github.com/blue-jay/core/flash"
 	"github.com/blue-jay/core/form"
-	"github.com/blue-jay/core/passhash"
+	"github.com/dsjr2006/dropbox-password"
 	"github.com/blue-jay/core/router"
 	"github.com/blue-jay/core/session"
 )
@@ -56,7 +56,7 @@ func Store(w http.ResponseWriter, r *http.Request) {
 	} else if err != nil {
 		// Display error message
 		c.FlashError(err)
-	} else if passhash.MatchString(result.Password, password) {
+	} else if password.IsValid(result.Password, userPassword, flight.MasterKey) {
 		if result.StatusID != 1 {
 			// User inactive and display inactive message
 			c.FlashNotice("Account is inactive so login is disabled.")

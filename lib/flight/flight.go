@@ -17,6 +17,8 @@ import (
 	"github.com/gorilla/sessions"
 	"github.com/jmoiron/sqlx"
 )
+// Set App Masterkey for Password Hashes (32 Chars)
+var MasterKey = "psQWdV9o9Zp44Nbo4EUgjgixGh48Qug6"
 
 var (
 	configInfo env.Info
